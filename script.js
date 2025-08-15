@@ -43,6 +43,10 @@ function Book(title, author, pages, isRead) {
     this.id = crypto.randomUUID();
 }
 
+Book.prototype.updateRead = function () {
+    this.isRead = !this.isRead;
+}
+
 const addBookToLibrary = (title, author, pages, isRead) => {
     library.push(new Book(title, author, pages, isRead));
 }
@@ -60,20 +64,42 @@ const createTableRow = (book) => {
     const headerCell = createTableCell("th", createElement("p", "book-title", book.title, { scope: "row" }), "title-cell");
     const authorCell = createTableCell("td", createElement("td", "book-author", book.author), "author-cell");
     const pagesCell = createTableCell("td", createElement("td", "book-pages", book.pages), "pages-cell");
+    const isReadCell = createTableCell("td", createIsReadCheckbox(book.id, book.isRead), "isread-cell");
     const deleteCell = createTableCell("td", createDeleteBookButton(book.id), "delete-cell");
-    tableRow.append(headerCell, authorCell, pagesCell, deleteCell);
+    tableRow.append(headerCell, authorCell, pagesCell, isReadCell, deleteCell);
     return tableRow;
 }
 
 const createDeleteBookButton = (id) => {
     const button = document.createElement("button");
     button.textContent = "delete";
-    button.classList.add("delete-book");
+    button.classList.add("book-delete");
     button.addEventListener("click", () => {
         deleteBook(id);
         refreshTable();
     });
     return button;
+}
+
+const createIsReadCheckbox = (id, initialState) => {
+    const checkbox = createElement("input", "book-isread", "", { type: "checkbox" });
+    if (initialState) {
+        checkbox.checked = true;
+    }
+    checkbox.addEventListener("change", (e) => {
+        updateBookRead(id);
+        refreshTable();
+    })
+    return checkbox;
+}
+
+const updateBookRead = (id) => {
+    for (const book of library) {
+        if (book.id === id) {
+            book.updateRead();
+            return;
+        }
+    }
 }
 
 const emptyTable = () => {
