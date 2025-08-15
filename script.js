@@ -42,5 +42,4 @@ function Book(title, author, pages, isRead) {
 const addBookToLibrary = (title, author, pages, isRead) => {
     library.push(new Book(title, author, pages, isRead));
 }
-
 init();
