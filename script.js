@@ -30,6 +30,7 @@ const addDummyBooks = () => {
 const init = () => {
     addDummyBooks();
     fillTable();
+    handleOpenModalClick();
 }
 
 function Book(title, author, pages, isRead) {
@@ -82,7 +83,20 @@ const createElement = (tag, classes = "", textContent = "", attributes = {}) => 
     return element;
 }
 
-const dialog = document.querySelector("dialog");
-dialog.showModal();
+const handleOpenModalClick = () => {
+    const openButton = document.querySelector(".new-book");
+    openButton.addEventListener("click", openModal);
+}
 
-init()
+const openModal = () => {
+    const dialog = document.querySelector("dialog");
+    dialog.showModal();
+}
+
+const closeModal = () => {
+    const dialog = document.querySelector("dialog");
+    dialog.close();
+}
+
+
+init();
