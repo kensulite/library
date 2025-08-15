@@ -31,6 +31,7 @@ const init = () => {
     addDummyBooks();
     fillTable();
     handleOpenModalClick();
+    hnadleCloseModalClick();
 }
 
 function Book(title, author, pages, isRead) {
@@ -88,6 +89,11 @@ const handleOpenModalClick = () => {
     openButton.addEventListener("click", openModal);
 }
 
+hnadleCloseModalClick = () => {
+    const closeButton = document.querySelector(".close-dialog");
+    closeButton.addEventListener("click", closeModal);
+}
+
 const openModal = () => {
     const dialog = document.querySelector("dialog");
     dialog.showModal();
@@ -97,6 +103,8 @@ const closeModal = () => {
     const dialog = document.querySelector("dialog");
     dialog.close();
 }
+
+openModal();
 
 
 init();
