@@ -60,8 +60,24 @@ const createTableRow = (book) => {
     const headerCell = createTableCell("th", createElement("p", "book-title", book.title, { scope: "row" }), "title-cell");
     const authorCell = createTableCell("td", createElement("td", "book-author", book.author), "author-cell");
     const pagesCell = createTableCell("td", createElement("td", "book-pages", book.pages), "pages-cell");
-    tableRow.append(headerCell, authorCell, pagesCell);
+    const deleteCell = createTableCell("td", createDeleteBookButton(book.id), "delete-cell");
+    tableRow.append(headerCell, authorCell, pagesCell, deleteCell);
     return tableRow;
+}
+
+const createDeleteBookButton = (id) => {
+    const button = document.createElement("button");
+    button.textContent = "delete";
+    button.classList.add("delete-book");
+    button.addEventListener("click", () => {
+        deleteBook(id);
+    });
+    return button;
+}
+
+const deleteBook = (id) => {
+    const index = library.findIndex((book) => book.id === id);
+    library.splice(index, 1);
 }
 
 const createTableCell = (type, content, classes) => {
@@ -125,8 +141,5 @@ const storeFormBook = (formData) => {
         dataObject["is-read"] === "yes" ? true : false
     );
 }
-
-openModal();
-
 
 init();
