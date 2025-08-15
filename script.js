@@ -82,4 +82,7 @@ const createElement = (tag, classes = "", textContent = "", attributes = {}) => 
     return element;
 }
 
-init();
+const dialog = document.querySelector("dialog");
+dialog.showModal();
+
+init()
