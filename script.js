@@ -31,7 +31,8 @@ const init = () => {
     addDummyBooks();
     fillTable();
     handleOpenModalClick();
-    hnadleCloseModalClick();
+    handleCloseModalClick();
+    handleNewBookSubmit();
 }
 
 function Book(title, author, pages, isRead) {
@@ -89,7 +90,7 @@ const handleOpenModalClick = () => {
     openButton.addEventListener("click", openModal);
 }
 
-hnadleCloseModalClick = () => {
+const handleCloseModalClick = () => {
     const closeButton = document.querySelector(".close-dialog");
     closeButton.addEventListener("click", closeModal);
 }
@@ -102,6 +103,27 @@ const openModal = () => {
 const closeModal = () => {
     const dialog = document.querySelector("dialog");
     dialog.close();
+}
+
+const handleNewBookSubmit = () => {
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        storeFormBook(data);
+        form.reset();
+        closeModal();
+    })
+}
+
+const storeFormBook = (formData) => {
+    const dataObject = Object.fromEntries(formData);
+    addBookToLibrary(
+        dataObject.title,
+        dataObject.author,
+        dataObject.pages,
+        dataObject["is-read"] === "yes" ? true : false
+    );
 }
 
 openModal();
