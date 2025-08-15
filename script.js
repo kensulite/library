@@ -62,8 +62,8 @@ const fillTable = () => {
 const createTableRow = (book) => {
     const tableRow = document.createElement("tr");
     const headerCell = createTableCell("th", createElement("p", "book-title", book.title, { scope: "row" }), "title-cell");
-    const authorCell = createTableCell("td", createElement("td", "book-author", book.author), "author-cell");
-    const pagesCell = createTableCell("td", createElement("td", "book-pages", book.pages), "pages-cell");
+    const authorCell = createTableCell("td", createElement("p", "book-author", book.author), "author-cell");
+    const pagesCell = createTableCell("td", createElement("p", "book-pages", book.pages), "pages-cell");
     const isReadCell = createTableCell("td", createIsReadCheckbox(book.id, book.isRead), "isread-cell");
     const deleteCell = createTableCell("td", createDeleteBookButton(book.id), "delete-cell");
     tableRow.append(headerCell, authorCell, pagesCell, isReadCell, deleteCell);

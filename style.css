@@ -73,3 +73,86 @@ fieldset {
 fieldset legend {
     font-weight: bold;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #D1D5DB;
+}
+
+main {
+    flex-grow: 1;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    gap: 3rem;
+}
+
+table {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+table button,
+main button {
+    background-color: rgb(55, 65, 81);
+    color: #D1D5DB;
+    padding: 0.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr,
+th {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+td {
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+}
+
+tr,
+th,
+td {
+    padding: 0.5rem;
+}
+
+header,
+main,
+footer,
+dialog {
+    background-color: #1E2937;
+}
+
+header,
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+footer {
+    padding: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+dialog {
+    color: #D1D5DB;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+footer a,
+a:visited {
+    color: #D1D5DB;
+}
