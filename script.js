@@ -29,6 +29,7 @@ const addDummyBooks = () => {
 
 const init = () => {
     addDummyBooks();
+    fillTable();
 }
 
 function Book(title, author, pages, isRead) {
@@ -42,4 +43,43 @@ function Book(title, author, pages, isRead) {
 const addBookToLibrary = (title, author, pages, isRead) => {
     library.push(new Book(title, author, pages, isRead));
 }
+
+const fillTable = () => {
+    const tableBody = document.querySelector("tbody");
+    for (const book of library) {
+        const tableRow = createTableRow(book);
+        tableBody.append(tableRow);
+    }
+}
+
+const createTableRow = (book) => {
+    const tableRow = document.createElement("tr");
+    const headerCell = createTableCell("th", createElement("p", "book-title", book.title, { scope: "row" }), "title-cell");
+    const authorCell = createTableCell("td", createElement("td", "book-author", book.author), "author-cell");
+    const pagesCell = createTableCell("td", createElement("td", "book-pages", book.pages), "pages-cell");
+    tableRow.append(headerCell, authorCell, pagesCell);
+    return tableRow;
+}
+
+const createTableCell = (type, content, classes) => {
+    const cell = document.createElement(type);
+    if (classes) {
+        cell.className = classes;
+    }
+    cell.append(content);
+    return cell;
+}
+
+const createElement = (tag, classes = "", textContent = "", attributes = {}) => {
+    const element = document.createElement(tag);
+    element.className = classes;
+    if (textContent) {
+        element.textContent = textContent;
+    }
+    for (const key in attributes) {
+        element.setAttribute(key, attributes[key]);
+    }
+    return element;
+}
+
 init();
