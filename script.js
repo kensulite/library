@@ -71,8 +71,19 @@ const createDeleteBookButton = (id) => {
     button.classList.add("delete-book");
     button.addEventListener("click", () => {
         deleteBook(id);
+        refreshTable();
     });
     return button;
+}
+
+const emptyTable = () => {
+    const tableBody = document.querySelector("tbody");
+    tableBody.replaceChildren();
+}
+
+const refreshTable = () => {
+    emptyTable();
+    fillTable();
 }
 
 const deleteBook = (id) => {
