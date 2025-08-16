@@ -166,6 +166,7 @@ const handleNewBookSubmit = () => {
         storeFormBook(data);
         form.reset();
         closeModal();
+        refreshTable();
     })
 }
 
