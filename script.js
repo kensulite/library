@@ -35,17 +35,21 @@ const init = () => {
     handleNewBookSubmit();
 }
 
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.id = crypto.randomUUID();
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+        this.id = crypto.randomUUID();
+    }
+
+    updateRead() {
+        this.isRead = !this.isRead;
+    }
 }
 
-Book.prototype.updateRead = function () {
-    this.isRead = !this.isRead;
-}
+
 
 const addBookToLibrary = (title, author, pages, isRead) => {
     library.push(new Book(title, author, pages, isRead));
